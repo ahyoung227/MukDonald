@@ -1,26 +1,35 @@
 import app.Product;
+import app.discount.discountCondition.DiscountCondition;
+import app.discount.discountCondition.KidDiscountCondition;
+import app.discount.discountCondition.StudentDiscountCondition;
+import app.discount.discountPolicy.FixedAmountDiscountPolicy;
+import app.discount.discountPolicy.FixedRateDiscountPolicy;
 import app.product.ProductRepository;
 
 import java.util.Scanner;
 
 public class OrderApp {
+    private ProductRepository productRepository;
 
-    ProductRepository productRepository = new ProductRepository();
-    Product[] products = productRepository.getAllProducts();
-    Menu menu = new Menu(products);
-    Cart cart = new Cart(productRepository, menu);
+    private Menu menu;
 
-    Order order = new Order(cart);
+    private Cart cart;
+
+    private Order order;
     Scanner scanner = new Scanner(System.in);
 
+    public OrderApp(ProductRepository productRepository, Menu menu, Cart cart, Order order) {
+        this.productRepository = productRepository;
+        this.menu = menu;
+        this.cart = cart;
+        this.order = order;
+    }
+
     public void start() {
-
-
 
         System.out.println("🍔 BurgerQueen Order Service");
 
         while(true) {
-
             menu.printMenu();
             String userInput = scanner.nextLine();
 
@@ -38,23 +47,5 @@ public class OrderApp {
                 cart.addToCart(menuNumber);
             }
         }
-
-
-        /**
-         * show menu
-         * get user input
-         *
-         * while(true) {
-         *     if user input is +
-         *         make order
-         *         break;
-         *     else if user input is 0
-         *         print cart
-         *     else if 1 ~ length of product length
-         *         add to cart
-         *
-         * }
-         *
-         */
     }
 }

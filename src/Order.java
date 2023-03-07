@@ -1,24 +1,23 @@
+import app.discount.Discount;
+import app.discount.discountCondition.DiscountCondition;
 import app.discount.discountCondition.KidDiscountCondition;
-import app.discount.discountCondition.StudentDiscountPolicy;
+import app.discount.discountCondition.StudentDiscountCondition;
+import app.discount.discountPolicy.FixedAmountDiscountPolicy;
+import app.discount.discountPolicy.FixedRateDiscountPolicy;
 
 public class Order {
     private Cart cart;
-    public Order(Cart cart) {
+    private Discount discount;
+    public Order(Cart cart, Discount discount) {
         this.cart = cart;
+        this.discount = discount;
     }
 
     public void makeOrder() {
 
         int totalPrice = cart.calculateTotalPrice();
+        int finalPrice = discount.discount(totalPrice);
 
-        KidDiscountCondition kidDiscountCondition = new KidDiscountCondition();
-        StudentDiscountPolicy studentDiscountPolicy = new StudentDiscountPolicy();
-
-        kidDiscountCondition.checkDiscountCondition();
-        studentDiscountPolicy.checkDiscountCondition();
-
-        if(kidDiscountCondition.isSatisfied()) totalPrice = kidDiscountCondition.applyDiscount(totalPrice);
-        if(studentDiscountPolicy.isSatisfied()) totalPrice = studentDiscountPolicy.applyDiscount(totalPrice);
 
         System.out.println("[📣] Your order has been received.");
         System.out.println("[📣] The order details are as follows. ");
@@ -27,6 +26,6 @@ public class Order {
         cart.printCartDetails();
 
         System.out.println("-".repeat(60));
-        System.out.printf("Total      : $%d\n", totalPrice);
+        System.out.printf("Total      : $%d\n", finalPrice);
     }
 }
