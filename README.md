@@ -1,5 +1,5 @@
 # MukDonald
-MuckDonald is a fast-food restaurant ordering system that sells hamburgers, sides, drinks, and sets that combine these items.
+MuckDonald is a fast-food restaurant ordering system that sells hamburgers, sides, drinks, and combo that combine these items.
 
 ## Features
 - Print menu
