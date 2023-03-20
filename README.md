@@ -55,7 +55,7 @@ or module should have only one reason to change or be responsible for one thing.
 
 Based on the Single Responsibility Principle, it is necessary to ensure that each object has a clear responsibility, 
 which includes the responsibility of creating all objects required for program execution.
-MukDonal uses a class called AppConfigurer that creates and manages all objects required for program execution, and establishes their dependencies.
+MuckDonald uses a class called AppConfigurer that creates and manages all objects required for program execution, and establishes their dependencies.
 ```
 public class Main {
     public static void main(String[] args) {
@@ -93,4 +93,4 @@ public class AppConfigurer {
     }
 }
 ```
-Mukdonalds implements Singleton pattern as above, so single instance(Cart) is shared between OrderApp and Order.
+MuckDonald implements Singleton pattern as above, so single instance(Cart) is shared between OrderApp and Order.
