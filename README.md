@@ -5,7 +5,7 @@ MuckDonald is a fast-food restaurant ordering system that sells hamburgers, side
 - Print menu
 - Choose option(Burger Only/Combo, Ketchup count, hasStraw)
 - Add to cart
-- children($1) discount, student discount(10%)
+- Children($1) discount, student discount(10%)
 - Print cart
 - Make order
 
@@ -28,8 +28,8 @@ public class StudentDiscountCondition {
     ...
 } 
 ```
-Currently, StudentDiscountCondition depends on FixedRateDiscountPolicy. 
-To separate StudentDiscountCondition from FixedRateDiscountPolicy
+Currently, StudentDiscountCondition class depends on FixedRateDiscountPolicy class. 
+To separate StudentDiscountCondition from FixedRateDiscountPolicy class, I implemented following code. 
 
 ``` 
 public class StudentDiscountCondition {
@@ -46,8 +46,8 @@ public class StudentDiscountCondition {
 	...
 }
 ```
-Instead, it creates `DiscountPolicy` interface, deletes the field that stores the instance of the FixedRateDiscountPolicy, 
-defines a field of interface type, and then create a constructor.
+After implementing SOC, 1) it creates `DiscountPolicy` interface, 2) deletes the field that stores the instance of the FixedRateDiscountPolicy, 
+3) defines a field of interface type, 4) and then create a constructor.
 
 ### Single Responsibility Principle, SRP
 Single Responsibility Principle (SRP) is one of the SOLID principles of object-oriented programming that states that a class 
@@ -71,9 +71,9 @@ public class Main {
 ```
 
 ### Singleton pattern
-In Main, by calling appConfigurer.cart(), the cart is created once, but if appConfigurer.order() is executed in Main, 
-the second cart may be created, causing an error where the cart is constantly reset. Therefore, the cart instance 
-is initialized once so that only one instance of Cart is created, and this single instance is shared between OrderApp and Order.
+In Main class, by calling appConfigurer.cart(), the Cart class is created once. 
+But if appConfigurer.order() is executed in Main, the second cart may be created, causing an error where the cart is constantly reset. 
+To avoid this to happened, the cart instance should be initialized once so that only one instance of Cart is created. 
 
 ``` 
 public class AppConfigurer {
@@ -93,3 +93,4 @@ public class AppConfigurer {
     }
 }
 ```
+Mukdonalds implements Singleton pattern as above, so single instance(Cart) is shared between OrderApp and Order.
