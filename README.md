@@ -55,7 +55,7 @@ or module should have only one reason to change or be responsible for one thing.
 
 Based on the Single Responsibility Principle, it is necessary to ensure that each object has a clear responsibility, 
 which includes the responsibility of creating all objects required for program execution.
-MuckDonald uses a class called AppConfigurer that creates and manages all objects required for program execution, and establishes their dependencies.
+MuckDonald uses a class called AppConfigurer that creates and manages all objects required for program execution, and establishes their dependencies. This ensures that other class objects can serve their own responsibility.
 ```
 public class Main {
     public static void main(String[] args) {
@@ -71,8 +71,7 @@ public class Main {
 ```
 
 ### Singleton pattern
-In Main class, by calling appConfigurer.cart(), the Cart class is created once. 
-But if appConfigurer.order() is executed in Main, the second cart may be created, causing an error where the cart is constantly reset. 
+Without implementing Singleton pattern, it is possible that two Cart objects can be instantiated in code(In Main class, by calling appConfigurer.cart(), the Cart class is created once. Then, if appConfigurer.order() is executed in Main, the second cart may be created, causing an error where the cart is constantly reset.).
 To avoid this to happened, the cart instance should be initialized once so that only one instance of Cart is created. 
 
 ``` 
@@ -93,4 +92,4 @@ public class AppConfigurer {
     }
 }
 ```
-MuckDonald implements Singleton pattern as above, so single instance(Cart) is shared between OrderApp and Order.
+MuckDonald implements Singleton pattern as above, so single instance(Cart) is shared between throughout an whole application.
